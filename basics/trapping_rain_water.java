@@ -17,10 +17,7 @@ public class trapping_rain_water
         right[n-1] = arr[n-1];
         for(int i = 1;i<n;i++)
         {
-            if(arr[i]>left[i-1])
-                left[i] = arr[i];
-            else
-                left[i] = left[i-1];
+            left[i] = Math.max(left[i-1],arr[i]);
         }
         for(int i = n-2;i>=0;i--)
         {
@@ -29,10 +26,6 @@ public class trapping_rain_water
         print(left);
         System.out.println();
         print(right);
-        // int res = 0;
-        // for(int i = 0;i<n;i++)
-        //     res = res + Math.min(left[i], right[i])-arr[i];
-        // return res;
         return 0;
     }
     public static void print(int arr[])
