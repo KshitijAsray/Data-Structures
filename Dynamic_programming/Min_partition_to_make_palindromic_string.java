@@ -4,11 +4,11 @@ public class Min_partition_to_make_palindromic_string
 {
     public static void main(String args[])
     {
-        String str = "qwqwqwfdgdggdjdhdjdjjdaabbvaabbvaabbhaabbbhaaddaddahgggjjjkk";
+        String str = "ababbbabbababa";
         int n = str.length();
-        //int res = Min_partitions(str, 0 ,n-1);
-        int res1 = Min_partitions_dp(str,n);
-        System.out.println(res1);
+        int res = Min_partitions(str, 0 ,n-1);
+        //int res1 = Min_partitions_dp(str,n);
+        System.out.println(res);
     }
     public static boolean ispalindrome(String str,int start,int end)
     {

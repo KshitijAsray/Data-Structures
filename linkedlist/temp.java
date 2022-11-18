@@ -1,5 +1,6 @@
 package linkedlist;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 public class temp 
 {

@@ -4,10 +4,10 @@ public class Allocate_minimum_pages
 {
     public static void main(String args[])
     {
-        int arr[] = {10,5,30,1,2,5,10,10,78,32,8,12,32,43,57};
-        int s = 5;
+        int arr[] = {10,20,30,40};
+        int s = 3;
         int n = arr.length;
-        int res = minimum_pages(arr, s, n);
+        int res = minimum_pages_dp(arr, s, n);
         System.out.println(res);
     }
     public static int minimum_pages(int arr[],int s,int n)
@@ -27,5 +27,26 @@ public class Allocate_minimum_pages
         for(int i = b;i<=e;i++)
             sum += arr[i];
         return sum;
+    }
+    public static int minimum_pages_dp(int arr[],int s,int n)
+    {
+        int dp[][] = new int[s+1][n+1];
+        for(int i = 1;i<=n;i++)
+            dp[1][i] = sum_array(arr, 0, i-1);
+        for(int i = 1;i<=s;i++)
+            dp[i][1] = arr[0];
+        for(int i = 2;i<=s;i++)
+        {
+            for(int j = 2;j<=n;j++)
+            {
+                int res = Integer.MAX_VALUE;
+                for(int p = 1;p<j;p++)
+                {
+                    res = Math.min(res,Math.max(dp[i-1][p], sum_array(arr, p, j-1)));
+                }
+                dp[i][j] = res;
+            }
+        }
+        return dp[s][n];
     }
 }

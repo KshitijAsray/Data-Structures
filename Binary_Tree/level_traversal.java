@@ -55,6 +55,7 @@ public class level_traversal
         if(root==null)
             return;
         Queue<TreeNode<Integer>> q1 = new LinkedList<>();
+        
         q1.add(root);
         while(q1.isEmpty()==false)
         {

@@ -2,11 +2,11 @@ package Binary_Heaps;
 
 public class Min_Heap 
 {
-    public static int arr[];
-    public static int cap,size;
+    int arr[];
+    int cap,size;
     public  Min_Heap(int cap)
     {
-        Min_Heap.cap = cap;
+        this.cap = cap;
         arr = new int[cap];
         size = 0;
     }
@@ -29,7 +29,7 @@ public class Min_Heap
         first = second;
         second = temp;
     }
-    public static void insert(int x)
+    public void insert(int x)
     {
         if(size==cap)
             return;
@@ -41,7 +41,7 @@ public class Min_Heap
             i = parent(i);
         }
     }
-    public static void Min_Heapify(int i)
+    public void Min_Heapify(int i)
     {
         int lh = left(i);
         int rh = left(i);
@@ -56,7 +56,7 @@ public class Min_Heap
             Min_Heapify(smallest);
         }
     }
-    public static int Extract_Min()
+    public int Extract_Min()
     {
         if(size==0)
             return Integer.MAX_VALUE;
@@ -70,7 +70,7 @@ public class Min_Heap
         Min_Heapify(0);
         return arr[size];
     }
-    public static void Decrease_Key(int i, int x)
+    public void Decrease_Key(int i, int x)
     {
         arr[i] = x;
         while(i>=0&&arr[i]<arr[parent(i)])
@@ -79,14 +79,14 @@ public class Min_Heap
             i = parent(i);
         }
     }
-    public static int Delete(int i)
+    public int Delete(int i)
     {
         int x = arr[i];
         Decrease_Key(i, Integer.MIN_VALUE);
         Extract_Min();
         return x;
     }
-    public static void Build_Heap(int arr[])
+    public void Build_Heap(int arr[])
     {
         int last_element = size-1;
         int right_most_bottom_element = (last_element-1)/2;

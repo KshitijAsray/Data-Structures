@@ -1,107 +1,105 @@
 package Binary_Heaps;
 
-public class Max_Heap 
+public class Max_Heap
 {
-    public static int arr[];
-    public static int cap,size;
-    public  Max_Heap(int cap)
+    int cap;
+    int size;
+    int arr[];
+    Max_Heap(int cap)
     {
-        Max_Heap.cap = cap;
+        this.cap = cap;
+        this.size = 0;
         arr = new int[cap];
-        size = 0;
     }
-    public static int left(int left)
+    public int left(int i)
     {
-        return(2*left+1);
+        return (int)((2*i)+1);
     }
-    public static int right(int right)
+    public int right(int i)
     {
-        return(2*right+2);
+        return (int)((2*i)+2);
     }
-    public static int parent(int parent)
+    public int parent(int i)
     {
-        int p = (int)((parent-1)/2);
-        return p;
+        return (int)((i-1)/2);
     }
-    public static void swap(int first,int second)
+    public void Max_heapify(int i)
     {
-        int temp = first;
-        first = second;
-        second = temp;
+        int lt = left(i);
+        int rt = right(i);
+        int large = i;
+        if(lt<size&&arr[lt]>arr[i])
+            large = lt;
+        if(rt<size&&arr[rt]>arr[large])
+            large = rt;
+        if(large!=i)
+        {
+            int temp = arr[i];
+            arr[i] = arr[large];
+            arr[large] = temp;
+            Max_heapify(large);
+        }
     }
-    public static void insert(int x)
+    public void insert(int x)
     {
         if(size==cap)
+        {
+            System.err.println("Heap is full");
             return;
+        }
         size++;
         arr[size-1] = x;
         for(int i = size-1;i>=0&&arr[parent(i)]<arr[i];)
         {
-            swap(arr[i],arr[parent(i)]);
+            int temp = arr[parent(i)];
+            arr[parent(i)] = arr[i];
+            arr[i] = temp;
             i = parent(i);
-        }
+        }   
     }
-    public static void Max_Heapify(int i)
-    {
-        int lh = left(i);
-        int rh = right(i);
-        int largest = i;
-        if(i<size&&arr[lh]>arr[i])
-            largest = lh;
-        if(i<size&&arr[rh]>arr[i])
-            largest = rh;
-        if(largest!=i)
-        {
-            swap(arr[i], arr[largest]);
-            Max_Heapify(largest);
-        }
-    }
-    public static int Extract_Max()
+    public int Extract_Max()
     {
         if(size==0)
-            return Integer.MIN_VALUE;
+            return Integer.MAX_VALUE;
         if(size==1)
         {
             size--;
             return arr[0];
         }
-        swap(arr[0], arr[size-1]);
+        int max = arr[0];
+        arr[0] = arr[size-1];
+        arr[size-1] = max;
         size--;
-        Max_Heapify(0);
-        return arr[size];
+        Max_heapify(0);
+        return max;
     }
-    public static void Decrease_Key(int i, int x)
+    public void Decrease_Key(int i,int x)
     {
         arr[i] = x;
-        while(i>=0&&arr[i]>arr[parent(i)])
+        for(int j = i;j>=0&&arr[parent(i)]<arr[i];)
         {
-            swap(arr[i], arr[parent(i)]);
+            int temp = arr[parent(i)];
+            arr[parent(i)] = arr[i];
+            arr[i] = temp;
             i = parent(i);
         }
     }
-    public static int Delete(int i)
+    public void Delete(int index)
     {
-        int x = arr[i];
-        Decrease_Key(i, Integer.MAX_VALUE);
+        Decrease_Key(index, Integer.MAX_VALUE);
         Extract_Max();
-        return x;
     }
-    public static void Build_Heap(int arr[])
+    public void print()
     {
-        int last_element = size-1;
-        int right_most_bottom_element = (last_element-1)/2;
-        for(int i = right_most_bottom_element;i>=0;i--)
-        {
-            Max_Heapify(i);
-        }
+        for(int i = 0;i<size;i++)
+            System.out.print(arr[i]+" ");
+        System.out.println();
     }
-    public static void Heap_Sort_Ascending_Order(int arr[])
+    public void Build_Heap(int arr1[])
     {
-        Build_Heap(arr);
-        for(int i = size-1;i>0;i--)
-        {
-            swap(arr[0], arr[size-1]);
-            Max_Heapify(0);
-        }
+        for(int i = (size-2)/2;i>=0;i--)
+            Max_heapify(i);
+        for(int i : arr1)
+            System.out.print(i+" ");
     }  
 }

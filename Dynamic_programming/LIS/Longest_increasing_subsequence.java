@@ -6,9 +6,9 @@ public class Longest_increasing_subsequence
 {
     public static void main(String args[])
     {
-        int nums[] = {3,4,2,8,10,5,1};
+        int nums[] = {3,2,-5,-6,-1,4};
         int n = nums.length;
-        int res = LIS_optimized(nums, n);
+        int res = LIS(nums, n);
         System.out.println(res);
     }
     public static int LIS(int nums[],int n)
