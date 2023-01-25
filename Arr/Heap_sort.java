@@ -14,6 +14,7 @@ public class Heap_sort
     public void Sort(int arr[],int n)
     {
         Build_Heap(arr, n);
+        print(arr);
         for(int i = n-1;i>=0;i--)
         {
             int temp = arr[0];

@@ -1,20 +1,23 @@
 package oops;
 
-public class bike implements vechicle1 
+public class bike extends vechicle 
 {
+    public void accleration()
+    {
+        System.out.println("accleration of bike called");
+    }
     public void changegear() 
     {
         System.out.println("bike gear");   
     }
-    public void type() 
+    public  void color()
     {
-        System.out.println("2 wheeler"); 
+        System.out.println("color of bike called");
     }
     public static void main(String args[])
     {
-        int a = 9;
-        int b = 7;
-        float c = (a*b)/8f;
-        System.out.println(c);
+        bike ob = new bike();
+        ob.accleration();
+        ob.color();
     }
 }

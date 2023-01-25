@@ -3,7 +3,7 @@ public class quickSort
 {
     public static void main(String args[])
     {
-        int arr[] = {12,54,21,67,89,123,43,789,90,43};
+        int arr[] = {12,43,122,432,56,87,23,121,99,345};
         int n = arr.length;
         print(arr);
         Sort(0, n-1, arr);
@@ -30,8 +30,8 @@ public class quickSort
     }
     public static int Hoare_partition(int low,int high,int arr[])
     {
-        int i = low-1,j=high+1;
         int pivot = arr[low];
+        int i = low-1,j=high+1;
         int u = 0;
         while(u!=1)
         {
@@ -55,7 +55,7 @@ public class quickSort
     {
         if(low<high)
         {
-            int pivot = Hoare_partition(low, high, arr);
+            int pivot = lomuto_partition(low, high, arr);
             Sort(low, pivot-1, arr);
             Sort(pivot+1,high,arr);
         }

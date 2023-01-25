@@ -4,7 +4,7 @@ public class generate_permutation
 {
     public static void main(String args[])
     {
-        String str = "ABCD";
+        String str = "ABC";
         int n = str.length();
         ArrayList<String> sty = new ArrayList<>();
         permutation(sty,str, 0, n);
@@ -13,10 +13,7 @@ public class generate_permutation
     public static void permutation(ArrayList<String> sty,String str,int start,int end)
     {
         if(start==end)          // when whole string is generated then start==end then add it to the list
-        {
-            if(str.contains("AB")!=true)
             sty.add(str);
-        }
         for(int i = start;i<end;i++)
         {
             str = new String(swap(str, i, start));

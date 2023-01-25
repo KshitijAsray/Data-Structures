@@ -5,7 +5,7 @@ class Spiral_traversal_2D_matrix
 {
     public static void main(String args[])
     {
-        int r = 3,c = 4,k=1;
+        int r = 8,c = 8,k=10;
         int arr[][] = new int[r][c];
         for(int i = 0;i<r;i++)
         {
@@ -21,6 +21,7 @@ class Spiral_traversal_2D_matrix
             {
                 System.out.print(arr[i][j]+" ");
             }
+            System.out.println();
         }
         System.out.println();
         ArrayList<Integer> res = spirallyTraverse(arr, r, c);
@@ -35,29 +36,28 @@ class Spiral_traversal_2D_matrix
         int cnt = 0;
         while(cnt<tot)
         {
-            for(int i = mincol,j = minrow;i<=maxcol;i++)
+            for(int i = mincol,j = minrow;i<=maxcol&&cnt<tot;i++)
             {
                 //System.out.println("top");
                 res.add(matrix[j][i]); 
                 cnt++;
             }
             minrow++;
-            for(int i = minrow,j = mincol;i<=maxrow;i++)
+            for(int i = minrow,j = maxcol;i<=maxrow&&cnt<tot;i++)
             {
                 //System.out.println("right");
-                //System.out.println(i+" "+j);
                 res.add(matrix[i][j]);
                 cnt++;
             }
             maxcol--;
-            for(int i = maxcol,j = maxrow;i>=mincol;i--)
+            for(int i = maxcol,j = maxrow;i>=mincol&&cnt<tot;i--)
             {
                 //System.out.println("bottom");
                 res.add(matrix[j][i]);
                 cnt++;
             }
             maxrow--;
-            for(int i = maxrow,j = mincol;i>=minrow;i--)
+            for(int i = maxrow,j = mincol;i>=minrow&&cnt<tot;i--)
             {
                 //System.out.println("left");
                 res.add(matrix[i][j]);
